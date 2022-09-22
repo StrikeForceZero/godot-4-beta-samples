@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqhcimtu3ax2"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_1730b"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_1730b")
+
+[node name="HostJoinControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HostJoinControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 512.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HostJoinControls/CenterContainer"]
+custom_minimum_size = Vector2i(500, 300)
+layout_mode = 2
+offset_left = 262.0
+offset_top = 150.0
+offset_right = 762.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HostJoinControls/CenterContainer/PanelContainer"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HostButton" type="Button" parent="HostJoinControls/CenterContainer/PanelContainer/VSplitContainer"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 144.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="HostJoinControls/CenterContainer/PanelContainer/VSplitContainer"]
+layout_mode = 2
+offset_top = 156.0
+offset_right = 500.0
+offset_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Join"
+
+[node name="RpcControls" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 579.0
+offset_top = 558.0
+offset_right = 579.0
+offset_bottom = 558.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="RpcControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="RpcControls/CenterContainer"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 100.0
+
+[node name="Button" type="Button" parent="RpcControls/CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2i(300, 100)
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 100.0
+text = "foo"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn", "res://bullet.tscn")
+spawn_path = NodePath("../Spawn")
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(558, 117)
+
+[connection signal="pressed" from="HostJoinControls/CenterContainer/PanelContainer/VSplitContainer/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="pressed" from="HostJoinControls/CenterContainer/PanelContainer/VSplitContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
+[connection signal="pressed" from="RpcControls/CenterContainer/PanelContainer/Button" to="." method="_on_Button_pressed"]

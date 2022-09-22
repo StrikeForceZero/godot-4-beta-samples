@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2tejbvwrpijo"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_6kac2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18ej7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3gh2i"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:sync_velocity")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 3
+mass = 0.25
+gravity_scale = 0.0
+freeze_mode = 1
+script = ExtResource("1_6kac2")
+sync_velocity = null
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_18ej7")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3gh2i")

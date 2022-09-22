@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://brcv3dktwq0oi"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_dkw3g"]
+[ext_resource type="Texture2D" uid="uid://b3gqqg7dknv0p" path="res://icon.png" id="1_rsd55"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyvjt"]
+size = Vector2(63, 62)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_avmey"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:sync_velocity")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_dkw3g")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_xyvjt")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_rsd55")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -64.0
+offset_right = 58.0
+offset_bottom = -38.0
+text = "<Player Name>"
+horizontal_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_avmey")
