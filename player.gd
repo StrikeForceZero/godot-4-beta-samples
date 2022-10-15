@@ -9,17 +9,16 @@ const friction = .05
 
 const col_force = 10
 
-func _ready():
+func _enter_tree():
 	$Label.text = name
-	set_multiplayer_authority(str(name).to_int())
-	# $MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(delta):
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.is_multiplayer_authority():
 		var dir = Input.get_vector("left", "right", "up", "down").normalized()
 		velocity = velocity + (dir * speed * delta)
 		velocity.x = lerp(velocity.x, 0.0, friction)
-		velocity.y = lerp(velocity.y, 0.0, friction)		
+		velocity.y = lerp(velocity.y, 0.0, friction)
 		sync_velocity = velocity
 	else:
 		velocity = sync_velocity

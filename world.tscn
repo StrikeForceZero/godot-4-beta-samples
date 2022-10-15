@@ -101,7 +101,7 @@ offset_bottom = 100.0
 text = "foo"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player.tscn", "res://bullet.tscn")
+_spawnable_scenes = PackedStringArray("res://player.tscn", "res://ball.tscn")
 spawn_path = NodePath("../Spawn")
 
 [node name="Spawn" type="Node2D" parent="."]
