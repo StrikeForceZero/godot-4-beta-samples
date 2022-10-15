@@ -12,8 +12,8 @@ func foo(bar):
 
 @rpc(any_peer, call_local) 
 func ball(player_id: int):
-	if not multiplayer.is_server():
-		return
+	#if not multiplayer.is_server():
+	#	return
 	var player = $Spawn.get_node(str(player_id))
 	if not player:
 		print("[server:%s][%s]: %s" % [multiplayer.is_server(), multiplayer.get_unique_id(), "no player found"])
@@ -21,7 +21,7 @@ func ball(player_id: int):
 	var ball = BallScene.instantiate()
 	ball.position = player.position + Vector2(50, 50)
 	$Spawn.add_child(ball)
-	#$MultiplayerSpawner.spawn(ball)
+	# $MultiplayerSpawner.spawn(ball)
 	pass
 
 func start_server():
@@ -61,6 +61,7 @@ func destroy_player(id: int):
 	$Spawn.get_node(str(id)).queue_free()
 
 func _on_Button_pressed():
-	rpc("foo", Time.get_ticks_msec())
-	rpc("ball", multiplayer.get_unique_id())
+	#rpc("foo", Time.get_ticks_msec())
+	#rpc("ball", multiplayer.get_unique_id())
+	ball(multiplayer.get_unique_id())
 	

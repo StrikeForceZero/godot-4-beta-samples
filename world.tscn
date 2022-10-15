@@ -14,7 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="HostJoinControls"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -29,7 +28,6 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="HostJoinControls/CenterContainer"]
 custom_minimum_size = Vector2i(500, 300)
-layout_mode = 2
 offset_left = 262.0
 offset_top = 150.0
 offset_right = 762.0
@@ -38,7 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VSplitContainer" type="VSplitContainer" parent="HostJoinControls/CenterContainer/PanelContainer"]
-layout_mode = 2
 offset_right = 500.0
 offset_bottom = 300.0
 grow_horizontal = 2
@@ -47,7 +44,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HostButton" type="Button" parent="HostJoinControls/CenterContainer/PanelContainer/VSplitContainer"]
-layout_mode = 2
 offset_right = 500.0
 offset_bottom = 144.0
 size_flags_horizontal = 3
@@ -55,7 +51,6 @@ size_flags_vertical = 3
 text = "Host"
 
 [node name="JoinButton" type="Button" parent="HostJoinControls/CenterContainer/PanelContainer/VSplitContainer"]
-layout_mode = 2
 offset_top = 156.0
 offset_right = 500.0
 offset_bottom = 300.0
@@ -75,7 +70,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="RpcControls"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,16 +83,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="RpcControls/CenterContainer"]
-layout_mode = 2
 offset_right = 300.0
 offset_bottom = 100.0
 
 [node name="Button" type="Button" parent="RpcControls/CenterContainer/PanelContainer"]
 custom_minimum_size = Vector2i(300, 100)
-layout_mode = 2
 offset_right = 300.0
 offset_bottom = 100.0
-text = "foo"
+text = "Spawn Ball"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn", "res://ball.tscn")

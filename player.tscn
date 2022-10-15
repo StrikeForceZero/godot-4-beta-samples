@@ -7,12 +7,15 @@
 size = Vector2(63, 62)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_avmey"]
-properties/0/path = NodePath(".:sync_velocity")
+properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
-properties/1/path = NodePath(".:position")
+properties/1/path = NodePath(".:sync_velocity")
 properties/1/spawn = true
 properties/1/sync = true
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/sync = true
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
@@ -37,3 +40,4 @@ horizontal_alignment = 1
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_avmey")
+visibility_update_mode = 1
