@@ -7,7 +7,9 @@ const PlayerScene = preload("res://player.tscn")
 const BallScene = preload("res://ball.tscn")
 
 @rpc(any_peer, call_local) 
-func rpc_print(from, message):
+func rpc_print(from: int, message: String):
+	if from == multiplayer.get_unique_id():
+		return
 	print("[server:%s][%s][from:%s]: %s" % [multiplayer.is_server(), multiplayer.get_unique_id(), from, message])
 
 @rpc(any_peer, call_local) 
