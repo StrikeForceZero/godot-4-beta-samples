@@ -7,8 +7,8 @@ const PlayerScene = preload("res://player.tscn")
 const BallScene = preload("res://ball.tscn")
 
 @rpc(any_peer, call_local) 
-func foo(bar):
-	print("[server:%s][%s]: %s" % [multiplayer.is_server(), multiplayer.get_unique_id(), bar])
+func rpc_print(from, message):
+	print("[server:%s][%s][from:%s]: %s" % [multiplayer.is_server(), multiplayer.get_unique_id(), from, message])
 
 @rpc(any_peer, call_local) 
 func ball(player_id: int):
@@ -60,8 +60,9 @@ func create_player(id: int):
 func destroy_player(id: int):
 	$Spawn.get_node(str(id)).queue_free()
 
-func _on_Button_pressed():
-	#rpc("foo", Time.get_ticks_msec())
-	#rpc("ball", multiplayer.get_unique_id())
+func _on_normal_ball_button_pressed():
 	ball(multiplayer.get_unique_id())
-	
+
+func _on_rpc_ball_button_pressed():
+	rpc("rpc_print", multiplayer.get_unique_id(), Time.get_ticks_msec())
+	rpc("ball", multiplayer.get_unique_id())
